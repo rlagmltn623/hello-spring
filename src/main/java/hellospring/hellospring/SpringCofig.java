@@ -14,21 +14,25 @@ import javax.sql.DataSource;
 @Configuration
 public class SpringCofig {
 
-    private DataSource dataSource;
+
+    private final MemberRepository memberRepository;
+
     @Autowired
-    public SpringCofig(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public SpringCofig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     @Bean
     public MemberService memberService(){
-        return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
 
+    /*
     @Bean
     public MemberRepository memberRepository(){
 
         //return new MemoryMemberRepository();
-        return new JdbcMemberRepository(dataSource);
-    }
+        //return new JdbcMemberRepository(dataSource);
+
+    }*/
 }
